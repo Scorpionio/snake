@@ -41,35 +41,50 @@ window.addEventListener('keydown', (event) => {
     switch (event.code) {
         case 'ArrowUp':
             yPosition--;
+            if (yPosition < 0) {
+                yPosition++;
+                alert("You lose");
+            } else {
+                cheak();
+            }
             break;
         case 'ArrowRight':
             xPosition++;
+            if (xPosition >= itemMatrix.length) {
+                xPosition--;
+                alert("You lose");
+            } else {
+                cheak();
+            }
             break;
         case 'ArrowDown':
+            console.log(yPosition);
             yPosition++;
+            if (yPosition >= itemMatrix.length) {
+                yPosition--;
+                alert("You lose");
+            } else {
+                cheak();
+            }
             break;
         case 'ArrowLeft':
             xPosition--;
+            if (xPosition < 0) {
+                xPosition++;
+                alert("You lose");
+            } else {
+                cheak();
+            }
             break;
     }
-    if (xPosition >= itemMatrix.length) {
-        xPosition--;
-        return 0;
-    }
-    if (xPosition < 0) {
-        xPosition++;
-        return 0;
-    }
-    if (yPosition >= itemMatrix.length) {
-        yPosition--;
-        return 0;
-    }
-    if (yPosition < 0) {
-        yPosition++;
-        return 0;
-    }
     
-    
+})
+
+function cheak() {
+    if (itemMatrix[yPosition][xPosition].classList.contains('player')) {
+        alert("You lose");
+        return 0;
+    }
     if (xPosition == xApple && yPosition == yApple) {
         itemMatrix[yApple][xApple].classList.remove('apple');
         itemMatrix[yPositionOld][xPositionOld].classList.add('player');
@@ -79,15 +94,12 @@ window.addEventListener('keydown', (event) => {
     } else {
         changePosition(xPosition, yPosition);
     }
-})
+}
 
 function changePosition(x, y) {
     playerArr.shift();
     playerArr.push(yPosition * 10 + xPosition);
     console.log(playerArr);
-    if (itemMatrix[y][x].classList.contains('player')) {
-        alert("You lose")
-    }
     itemMatrix.forEach(function(item) {
         item.forEach(function (i) {
             i.classList.remove('player');

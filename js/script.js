@@ -29,12 +29,15 @@ let xPosition = 0;
 let yPosition = 0;
 let xPositionOld = 0;
 let yPositionOld = 0;
-let playerArr = [];
+let playerArr = [0];
+let playerOld = playerArr[playerArr.length - 1];
 
-console.log(itemMatrix[0][0])
 window.addEventListener('keydown', (event) => {
-    xPositionOld = xPosition;
+    /*playerOld = playerArr[playerArr.length - 1];
+    yPositionOld = Math.floor(playerOld/10);
+    xPositionOld = playerOld - Math.floor(playerOld/10) * 10;*/
     yPositionOld = yPosition;
+    xPositionOld = xPosition;
     switch (event.code) {
         case 'ArrowUp':
             yPosition--;
@@ -65,12 +68,12 @@ window.addEventListener('keydown', (event) => {
         yPosition++;
         return 0;
     }
-
+    
     
     if (xPosition == xApple && yPosition == yApple) {
         itemMatrix[yApple][xApple].classList.remove('apple');
         itemMatrix[yPositionOld][xPositionOld].classList.add('player');
-        playerArr.push(yPositionOld * 10 + xPositionOld);
+        playerArr.unshift(yPositionOld * 10 + xPositionOld);
         changePosition(xPosition, yPosition);
         addApple(playerArr);
     } else {
@@ -81,7 +84,10 @@ window.addEventListener('keydown', (event) => {
 function changePosition(x, y) {
     playerArr.shift();
     playerArr.push(yPosition * 10 + xPosition);
-    console.log(playerArr)
+    console.log(playerArr);
+    if (itemMatrix[y][x].classList.contains('player')) {
+        alert("You lose")
+    }
     itemMatrix.forEach(function(item) {
         item.forEach(function (i) {
             i.classList.remove('player');
@@ -90,6 +96,7 @@ function changePosition(x, y) {
     playerArr.forEach((q) => {
         itemMatrix[Math.floor(q/10)][q - Math.floor(q/10) * 10].classList.add('player');
     })
+    
     return playerArr;
 }
 
@@ -107,9 +114,7 @@ let appleAte = 0;
 addApple();
 function addApple() {
     let newPlayerArr = arrOfNumbers.slice();
-    console.log(arrOfNumbers);
     let result = newPlayerArr.filter(el_A => !playerArr.includes(el_A))
-    console.log(result);
     let randomArr = randomMethod(result);
     xApple = randomArr[1];
     yApple = randomArr[0];

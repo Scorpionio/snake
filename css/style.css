@@ -92,6 +92,10 @@ h1, h2, h3, h4, h5, h6 {
   background-color: green;
   z-index: 2;
 }
+.block .player-head {
+  background-color: rgb(28, 218, 28);
+  z-index: 2;
+}
 .block .apple {
   background-color: red;
 }/*# sourceMappingURL=style.css.map */

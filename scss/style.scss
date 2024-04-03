@@ -1,24 +1,49 @@
 @import '../../Phone_Master/scss/default.scss';
 
-.block {
+
+.game {
     width: 500px;
     height: 500px;
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    border: 1px solid black;
-    .block-item {
-        border: 1px solid gray;
+    background-color: rgba(128, 128, 128, 0.493);
+    position: relative;
+    button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 8px 24px;
+        font-weight: 700;
+        background-color: rgb(51, 104, 8);
+        color: #fff;
+        font-size: 24px;
+        border-radius: 7px;
     }
-    .player {
-        background-color: green;
-        z-index: 2;
-    }
-    .player-head {
-        background-color: rgb(28, 218, 28);
-        z-index: 2;
-    }
-    .apple {
-        background-color: red;
+    .block {
+        width: 500px;
+        height: 500px;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+        border: 1px solid black;
+        .block-item {
+            border: 1px solid gray;
+        }
+        .player {
+            background-color: green;
+            z-index: 2;
+        }
+        .player-head {
+            background-color: rgb(28, 218, 28);
+            z-index: 2;
+        }
+        .apple {
+            background-color: red;
+        }
+        .sand-1 {
+            background-color: rgb(211, 211, 32);
+        }
+        .sand-2 {
+            background-color: rgb(214, 148, 26);
+        }
     }
 }

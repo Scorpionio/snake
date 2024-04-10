@@ -1,10 +1,11 @@
 const itemArr = document.querySelectorAll(".block-item");
 const pointText = document.getElementById("point");
+const maxPointText = document.getElementById("max-point");
 
 //======Старт
 
 const button = document.getElementById("start");
-const gameUI = document.getElementById("game");
+const gameUI = document.getElementById("gameUI");
 
 function startGame() {
     button.style.display = "none";
@@ -33,8 +34,10 @@ for (let i = 0; i < itemArr.length; i++) {
 
 let cycle;
 function start() {
+    pointText.textContent = `Score: ${0}`;
     cycle = setInterval(game, 150);
 }
+
 
 
 //====Игрок
@@ -47,10 +50,21 @@ let yPositionOld = 0;
 let playerArr = [0];
 let playerOld = playerArr[playerArr.length - 1];
 let direction = "Right";
-let directionOld = "";
-let eventOld = "";
+let directionOld = "Left";
+let appleAte = -1;
+let maxScore = 0;
+maxScore = localStorage.getItem('maxScore') || 0;
+localStorage.setItem('maxScore', maxScore);
+maxPointText.textContent = `Max score: ${maxScore}`;
+
+
 
 function restart() {
+    if (appleAte > maxScore) {
+        maxScore = appleAte;
+        localStorage.setItem('maxScore', maxScore);
+        maxPointText.textContent = `Max score: ${maxScore}`;
+    }
     text = "";
     xPosition = 0;
     yPosition = 0;
@@ -59,26 +73,66 @@ function restart() {
     playerArr = [0];
     playerOld = playerArr[playerArr.length - 1];
     direction = "Right";
-    directionOld = "";
+    directionOld = "Left";
+    appleAte = 0;
     changePosition(xPosition, yPosition);
     button.style.display = "block";
     gameUI.style.backgroundColor = "rgba(128, 128, 128, 0.493)";
 }
 
 window.addEventListener('keydown', (event) => {
-    directionOld = direction;
-    switch (event.code) {
-        case 'ArrowUp':
-            direction = "Up";
+    switch (directionOld) {
+        case "Up":
+            switch (event.code) {
+                case 'ArrowRight':
+                    direction = "Right";
+                    break;
+                case 'ArrowDown':
+                    direction = "Down";
+                    break;
+                case 'ArrowLeft':
+                    direction = "Left";
+                    break;
+            }
             break;
-        case 'ArrowRight':
-            direction = "Right";
+        case "Right":
+            switch (event.code) {
+                case 'ArrowUp':
+                    direction = "Up";
+                    break;
+                case 'ArrowDown':
+                    direction = "Down";
+                    break;
+                case 'ArrowLeft':
+                    direction = "Left";
+                    break;
+            }
             break;
-        case 'ArrowDown':
-            direction = "Down";
+        case "Down":
+            switch (event.code) {
+                case 'ArrowUp':
+                    direction = "Up";
+                    break;
+                case 'ArrowRight':
+                    direction = "Right";
+                    break;
+                case 'ArrowLeft':
+                    direction = "Left";
+                    break;
+            }
             break;
-        case 'ArrowLeft':
-            direction = "Left";
+        case "Left":
+            switch (event.code) {
+                case 'ArrowUp':
+                    direction = "Up";
+                    break;
+                case 'ArrowRight':
+                    direction = "Right";
+                    break;
+                case 'ArrowDown':
+                    direction = "Down";
+                    break;
+            }
             break;
     }
 })
@@ -89,16 +143,7 @@ function game() {
     switch (direction) {
         case "Up":
             yPosition--;
-            // console.log(yPosition);
-            // console.log(yPositionOld);
-            // if (yPosition == yPositionOld) {
-            //     yPosition++;
-            //     direction = "Down";
-            // } else {
-            //     yPosition--;
-            // }
-            // console.log(yPosition);
-            // console.log(yPositionOld);
+            directionOld = "Down";
             if (yPosition < 0) {
                 yPosition++;
                 restart();
@@ -110,11 +155,7 @@ function game() {
             break;
         case "Right":
             xPosition++;
-            // if (directionOld == "Left") {
-            //     xPosition--;
-            // } else {
-            //     xPosition++;
-            // }
+            directionOld = "Left";
             if (xPosition >= itemMatrix.length) {
                 xPosition--;
                 restart();
@@ -126,11 +167,7 @@ function game() {
             break;
         case "Down":
             yPosition++;
-            // if (directionOld == "Up") {
-            //     yPosition--;
-            // } else {
-            //     yPosition++;
-            // }
+            directionOld = "Up";
             if (yPosition >= itemMatrix.length) {
                 yPosition--;
                 restart();
@@ -142,11 +179,7 @@ function game() {
             break;
         case "Left":
             xPosition--;
-            // if (directionOld == "Right") {
-            //     xPosition++;
-            // } else {
-            //     xPosition--;
-            // }
+            directionOld = "Right";
             if (xPosition < 0) {
                 xPosition++;
                 restart();
@@ -202,7 +235,6 @@ function randomMethod(r) {
 
 let xApple;
 let yApple;
-let appleAte = 0;
 addApple();
 function addApple() {
     let newPlayerArr = arrOfNumbers.slice();
@@ -211,6 +243,6 @@ function addApple() {
     xApple = randomArr[1];
     yApple = randomArr[0];
     itemMatrix[yApple][xApple].classList.add('apple');
-    pointText.textContent = `Счёт: ${appleAte}`;
     appleAte++;
+    pointText.textContent = `Score: ${appleAte}`;
 }

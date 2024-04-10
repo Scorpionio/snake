@@ -77,13 +77,46 @@ h1, h2, h3, h4, h5, h6 {
   color: red;
 }
 
-.game {
-  width: 500px;
-  height: 500px;
-  background-color: rgba(128, 128, 128, 0.493);
-  position: relative;
+h1, p, a {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 400px;
 }
-.game button {
+
+main {
+  background-color: #fff;
+  padding-top: 20px;
+}
+main .container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+main h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 64px;
+  font-weight: 700;
+}
+main .score {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+main .game {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+main .game .gameUI {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.493);
+}
+main .game button {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -95,31 +128,36 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 24px;
   border-radius: 7px;
 }
-.game .block {
-  width: 500px;
-  height: 500px;
+main .game button p {
+  font-weight: 600;
+  font-size: 28px;
+}
+main .game .block {
+  width: 400px;
+  height: 400px;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  border: 1px solid black;
+  border: 4px solid black;
+  background-color: rgb(217, 236, 74);
 }
-.game .block .block-item {
-  border: 1px solid gray;
+main .game .block .block-item {
+  border: 0.5px solid gray;
 }
-.game .block .player {
+main .game .block .player {
   background-color: green;
   z-index: 2;
 }
-.game .block .player-head {
+main .game .block .player-head {
   background-color: rgb(28, 218, 28);
   z-index: 2;
 }
-.game .block .apple {
+main .game .block .apple {
   background-color: red;
 }
-.game .block .sand-1 {
+main .game .block .sand-1 {
   background-color: rgb(211, 211, 32);
 }
-.game .block .sand-2 {
+main .game .block .sand-2 {
   background-color: rgb(214, 148, 26);
 }/*# sourceMappingURL=style.css.map */

@@ -5,116 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="game" class="game">
-        <button id="start" onclick="startGame()">
-            Start
-        </button>
-        <div class="block">
-            <div class="block-item player">0</div>
-            <div class="block-item">1</div>
-            <div class="block-item">2</div> 
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
-            <div class="block-item"></div>
+    <main>
+        <div class="container">
+            <h1>SNAKE</h1>
+            <div class="score">
+                <p id="point" class="point">Score: 0</p>
+                <p id="max-point" class="max-point">Max score: 0</p>
+            </div>
+            <div class="game">
+                <div id="gameUI" class="gameUI"></div>
+                <button id="start" onclick="startGame()">
+                    <p>
+                        Start
+                    </p>
+                </button>
+                <div class="block">
+                    <div class="block-item player"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div> 
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                    <div class="block-item"></div>
+                </div>
+            </div>
         </div>
-        <p id="point" class="point">Счёт: 0</p>
-    </div>
+    </main>
     <script src="js/game.js"></script>
 </body>
 </html>

@@ -17,6 +17,26 @@
                 <p id="point" class="point">Score: 0</p>
                 <p id="max-point" class="max-point">Max score: 0</p>
             </div>
+            <div class="settings">
+                <form class="map">
+                    <label for="map">Map size:</label>
+                    <select id="size" name="map">
+                      <option value="7" onclick="changeSize()">7х7</option>
+                      <option selected="selected" value="10" onclick="changeSize()">10х10</option>
+                      <option value="12" onclick="changeSize()">12x12</option>
+                      <option value="15" onclick="changeSize()">15x15</option>
+                    </select>
+                </form>
+                <form class="difficulty">
+                    <label for="speed">Snake speed:</label>
+                    <select id="speed" name="speed">
+                      <option value="400">Slow</option>
+                      <option selected="selected" value="220">Standart</option>
+                      <option value="120">Fast</option>
+                      <option value="60">NFS</option>
+                    </select>
+                </form>
+            </div>
             <div class="game">
                 <div id="gameUI" class="gameUI"></div>
                 <button id="start" onclick="startGame()">
@@ -24,7 +44,7 @@
                         Start
                     </p>
                 </button>
-                <div class="block">
+                <div id="block" class="block">
                     <div class="block-item player"></div>
                     <div class="block-item"></div>
                     <div class="block-item"></div> 

@@ -1,6 +1,29 @@
-const itemArr = document.querySelectorAll(".block-item");
+const block = document.getElementById("block");
+let itemArr = document.querySelectorAll(".block-item");
 const pointText = document.getElementById("point");
 const maxPointText = document.getElementById("max-point");
+
+const speed = document.getElementById("speed");
+const size = document.getElementById("size");
+
+size.addEventListener("change", () => {
+    let mapSize = Math.pow(size.value, 2);
+    block.innerHTML = "";
+    let itemMap = document.createElement("div");
+    itemMap.classList += "block-item";
+    block.style.gridTemplateColumns = `repeat(${size.value}, 1fr)`;
+    block.style.gridTemplateRows = `repeat(${size.value}, 1fr)`;
+    for (let i = 0; i < mapSize; i++) {
+        block.innerHTML += `<div class="block-item"></div>`;
+    }
+    itemArr = document.querySelectorAll(".block-item");
+    itemArr[0].classList += " player";
+    appleAte--;
+    changeSize();
+    addApple();
+})
+
+
 
 //======Старт
 
@@ -10,6 +33,7 @@ const gameUI = document.getElementById("gameUI");
 function startGame() {
     button.style.display = "none";
     gameUI.style.backgroundColor = "#ffffff00";
+    speedSetting();
     start();
 }
 
@@ -17,25 +41,39 @@ function startGame() {
 
 let itemArrIndex = 0;
 let arrOfNumbers = [];
-const itemMatrix = [];
-for (let i = 0; i < itemArr.length / 10; i++) {
-    itemMatrix.push([]);
-}
-for (let i = 0; i < itemMatrix.length; i++) {
-    for (let j = 0; j < itemMatrix.length; j++) {
-        itemMatrix[i].push(itemArr[itemArrIndex]);
-        itemArrIndex++;
+let itemMatrix = [];
+changeSize();
+function changeSize() {
+    itemArrIndex = 0;
+    arrOfNumbers = [];
+    itemMatrix = [];
+    for (let i = 0; i < Math.sqrt(itemArr.length); i++) {
+        itemMatrix.push([]);
+    }
+    for (let i = 0; i < itemMatrix.length; i++) {
+        for (let j = 0; j < itemMatrix.length; j++) {
+            itemMatrix[i].push(itemArr[itemArrIndex]);
+            itemArrIndex++;
+        }
+    }
+    
+    for (let i = 0; i < itemArr.length; i++) {
+        arrOfNumbers.push(i);
     }
 }
 
-for (let i = 0; i < itemArr.length; i++) {
-    arrOfNumbers.push(i);
+
+
+let snakeSpeed = 0;
+function speedSetting() {
+    console.log(speed.value);
+    snakeSpeed = Number(speed.value);
 }
 
 let cycle;
 function start() {
     pointText.textContent = `Score: ${0}`;
-    cycle = setInterval(game, 150);
+    cycle = setInterval(game, snakeSpeed);
 }
 
 
@@ -156,6 +194,7 @@ function game() {
         case "Right":
             xPosition++;
             directionOld = "Left";
+            console.log(itemMatrix)
             if (xPosition >= itemMatrix.length) {
                 xPosition--;
                 restart();
@@ -202,7 +241,7 @@ function cheak() {
     if (xPosition == xApple && yPosition == yApple) {
         itemMatrix[yApple][xApple].classList.remove('apple');
         itemMatrix[yPositionOld][xPositionOld].classList.add('player');
-        playerArr.unshift(yPositionOld * 10 + xPositionOld);
+        playerArr.unshift(yPositionOld * size.value + xPositionOld);
         changePosition(xPosition, yPosition);
         addApple(playerArr);
     } else {
@@ -212,22 +251,24 @@ function cheak() {
 
 function changePosition(x, y) {
     playerArr.shift();
-    playerArr.push(yPosition * 10 + xPosition);
+    playerArr.push(yPosition * size.value + xPosition);
     itemMatrix.forEach(function(item) {
         item.forEach(function (i) {
             i.classList.remove('player');
         })
     });
     playerArr.forEach((q) => {
-        itemMatrix[Math.floor(q/10)][q - Math.floor(q/10) * 10].classList.add('player');
+        itemMatrix[Math.floor(q/size.value)][q - Math.floor(q/size.value) * size.value].classList.add('player');
     })
     
     return playerArr;
 }
 
 function randomMethod(r) {
+    //143
     let random = r[Math.floor(Math.random() * r.length)];
-    return [Math.floor(random/10), random - Math.floor(random/10) * 10];
+    console.log(random)
+    return [Math.floor(random/size.value), random - Math.floor(random/size.value) * size.value];
 }
 
 
@@ -242,6 +283,8 @@ function addApple() {
     let randomArr = randomMethod(result);
     xApple = randomArr[1];
     yApple = randomArr[0];
+    console.log(xApple)
+    console.log(yApple)
     itemMatrix[yApple][xApple].classList.add('apple');
     appleAte++;
     pointText.textContent = `Score: ${appleAte}`;

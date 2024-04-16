@@ -1,7 +1,7 @@
 @import '../../Phone_Master/scss/default.scss';
 
 
-h1,p,a {
+h1,p,a,label,option, select {
     font-family: "Pixelify Sans", sans-serif;
     font-size: 24px;
     font-weight: 400px;
@@ -25,6 +25,24 @@ main {
         display: flex;
         justify-content: center;
         gap: 20px;
+    }
+    .settings {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 10px;
+        form {
+            label {
+                font-size: 20px;
+            }
+            select {
+                font-size: 20px;
+                option {
+                    font-size: 20px;
+                }
+            }
+        }
     }
     .game {
         width: 400px;

@@ -1,5 +1,8 @@
 @import '../../Phone_Master/scss/default.scss';
 
+body {
+    overflow: hidden;
+}
 
 h1,p,a,label,option, select {
     font-family: "Pixelify Sans", sans-serif;

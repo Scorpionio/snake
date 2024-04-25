@@ -180,9 +180,11 @@ window.addEventListener('keydown', (event) => {
 //Движение на телефоне
 document.addEventListener('touchstart', handleTouchStart, false);       
 document.addEventListener('touchmove', handleTouchMove, false);
+const list = document.getElementById("list");
 
-var xDown = null;                                   
-var yDown = null;                           
+let xDown = null;                                   
+let yDown = null;                           
+
 
 function handleTouchStart(evt) {                                         
     xDown = evt.touches[0].clientX;                              
@@ -202,14 +204,18 @@ function handleTouchMove(evt) {
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
         if ( xDiff > 0 ) {
             direction = "Left";
+            list.innerHTML += `<li class="item">left</li>`;
         } else {
             direction = "Right";
+            list.innerHTML += `<li class="item">right</li>`;
         }                       
     } else { 
         if ( yDiff > 0 ) {
             direction = "Up";
+            list.innerHTML += `<li class="item">up</li>`;
         } else { 
             direction = "Down";
+            list.innerHTML += `<li class="item">down</li>`
         }                                                                 
     }
     xDown = null;

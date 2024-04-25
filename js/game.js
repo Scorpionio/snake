@@ -29,12 +29,10 @@ size.addEventListener("change", () => {
 
 const button = document.getElementById("start");
 const gameUI = document.getElementById("gameUI");
-let inGame = false;
 
 function startGame() {
     button.style.display = "none";
     gameUI.style.backgroundColor = "#ffffff00";
-    inGame = true;
     speedSetting();
     start();
 }
@@ -117,7 +115,6 @@ function restart() {
     changePosition(xPosition, yPosition);
     button.style.display = "block";
     gameUI.style.backgroundColor = "rgba(128, 128, 128, 0.493)";
-    inGame = false;
 }
 
 window.addEventListener('keydown', (event) => {
@@ -204,18 +201,14 @@ function handleTouchMove(evt) {
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
         if ( xDiff > 0 ) {
             direction = "Left";
-            list.innerHTML += `<li class="item">left</li>`;
         } else {
             direction = "Right";
-            list.innerHTML += `<li class="item">right</li>`;
         }                       
     } else { 
         if ( yDiff > 0 ) {
             direction = "Up";
-            list.innerHTML += `<li class="item">up</li>`;
         } else { 
             direction = "Down";
-            list.innerHTML += `<li class="item">down</li>`
         }                                                                 
     }
     xDown = null;

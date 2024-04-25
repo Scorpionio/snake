@@ -180,4 +180,48 @@ main .game .block .sand-1 {
 }
 main .game .block .sand-2 {
   background-color: rgb(214, 148, 26);
+}
+
+@media (max-width: 450px) {
+  main .container h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 42px;
+    font-weight: 700;
+  }
+  main .container .score {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  main .container .settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 10px;
+  }
+  main .container .settings form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main .container .settings form label {
+    font-size: 16px;
+  }
+  main .container .settings form select {
+    font-size: 16px;
+  }
+  main .container .settings form select option {
+    font-size: 16px;
+  }
+  main .container .game {
+    width: 275px;
+    height: 275px;
+  }
+  main .container .game .block {
+    width: 275px;
+    height: 275px;
+  }
 }/*# sourceMappingURL=style.css.map */

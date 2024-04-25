@@ -201,15 +201,15 @@ function handleTouchMove(evt) {
     let yDiff = yDown - yUp;
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
         if ( xDiff > 0 ) {
-            direction = "left";
+            direction = "Left";
         } else {
-            direction = "right";
+            direction = "Right";
         }                       
     } else { 
         if ( yDiff > 0 ) {
-            direction = "up";
+            direction = "Up";
         } else { 
-            direction = "down";
+            direction = "Down";
         }                                                                 
     }
     xDown = null;

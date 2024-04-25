@@ -29,10 +29,12 @@ size.addEventListener("change", () => {
 
 const button = document.getElementById("start");
 const gameUI = document.getElementById("gameUI");
+let inGame = false;
 
 function startGame() {
     button.style.display = "none";
     gameUI.style.backgroundColor = "#ffffff00";
+    inGame = true;
     speedSetting();
     start();
 }
@@ -96,7 +98,6 @@ localStorage.setItem('maxScore', maxScore);
 maxPointText.textContent = `Max score: ${maxScore}`;
 
 
-
 function restart() {
     if (appleAte > maxScore) {
         maxScore = appleAte;
@@ -116,6 +117,7 @@ function restart() {
     changePosition(xPosition, yPosition);
     button.style.display = "block";
     gameUI.style.backgroundColor = "rgba(128, 128, 128, 0.493)";
+    inGame = false;
 }
 
 window.addEventListener('keydown', (event) => {
@@ -174,6 +176,46 @@ window.addEventListener('keydown', (event) => {
             break;
     }
 })
+
+//Движение на телефоне
+document.addEventListener('touchstart', handleTouchStart, false);       
+document.addEventListener('touchmove', handleTouchMove, false);
+
+var xDown = null;                                   
+var yDown = null;                           
+
+function handleTouchStart(evt) {                                         
+    xDown = evt.touches[0].clientX;                              
+    yDown = evt.touches[0].clientY;                          
+};                                                
+
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    let xUp = evt.touches[0].clientX;                            
+    let yUp = evt.touches[0].clientY;
+
+    let xDiff = xDown - xUp;
+    let yDiff = yDown - yUp;
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+        if ( xDiff > 0 ) {
+            direction = "left";
+        } else {
+            direction = "right";
+        }                       
+    } else { 
+        if ( yDiff > 0 ) {
+            direction = "up";
+        } else { 
+            direction = "down";
+        }                                                                 
+    }
+    xDown = null;
+    yDown = null;                                             
+};
+
 
 function game() {
     yPositionOld = yPosition;

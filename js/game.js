@@ -117,61 +117,26 @@ function restart() {
     gameUI.style.backgroundColor = "rgba(128, 128, 128, 0.493)";
 }
 
+
+
+let directionPC = "Right";
+let directionPhohe = "Right";
 window.addEventListener('keydown', (event) => {
-    switch (directionOld) {
-        case "Up":
-            switch (event.code) {
-                case 'ArrowRight':
-                    direction = "Right";
-                    break;
-                case 'ArrowDown':
-                    direction = "Down";
-                    break;
-                case 'ArrowLeft':
-                    direction = "Left";
-                    break;
-            }
+    switch (event.code) {
+        case 'ArrowLeft':
+            directionPC = "Left";
             break;
-        case "Right":
-            switch (event.code) {
-                case 'ArrowUp':
-                    direction = "Up";
-                    break;
-                case 'ArrowDown':
-                    direction = "Down";
-                    break;
-                case 'ArrowLeft':
-                    direction = "Left";
-                    break;
-            }
+        case 'ArrowUp':
+            directionPC = "Up";
             break;
-        case "Down":
-            switch (event.code) {
-                case 'ArrowUp':
-                    direction = "Up";
-                    break;
-                case 'ArrowRight':
-                    direction = "Right";
-                    break;
-                case 'ArrowLeft':
-                    direction = "Left";
-                    break;
-            }
+        case 'ArrowRight':
+            directionPC = "Right";
             break;
-        case "Left":
-            switch (event.code) {
-                case 'ArrowUp':
-                    direction = "Up";
-                    break;
-                case 'ArrowRight':
-                    direction = "Right";
-                    break;
-                case 'ArrowDown':
-                    direction = "Down";
-                    break;
-            }
+        case 'ArrowDown':
+            directionPC = "Down";
             break;
     }
+    cheakDirection(directionPC);
 })
 
 //Движение на телефоне
@@ -181,7 +146,6 @@ const list = document.getElementById("list");
 
 let xDown = null;                                   
 let yDown = null;                           
-
 
 function handleTouchStart(evt) {                                         
     xDown = evt.touches[0].clientX;                              
@@ -195,25 +159,83 @@ function handleTouchMove(evt) {
 
     let xUp = evt.touches[0].clientX;                            
     let yUp = evt.touches[0].clientY;
-
+    //добавить проверку на directionOld
     let xDiff = xDown - xUp;
     let yDiff = yDown - yUp;
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
         if ( xDiff > 0 ) {
-            direction = "Left";
+            directionPhohe = "Left";
         } else {
-            direction = "Right";
+            directionPhohe = "Right";
         }                       
     } else { 
         if ( yDiff > 0 ) {
-            direction = "Up";
+            directionPhohe = "Up";
         } else { 
-            direction = "Down";
+            directionPhohe = "Down";
         }                                                                 
     }
     xDown = null;
-    yDown = null;                                             
+    yDown = null;  
+    cheakDirection(directionPhohe);
 };
+
+function cheakDirection(input) {
+    switch (directionOld) {
+        case "Up":
+            switch (input) {
+                case 'Right':
+                    direction = "Right";
+                    break;
+                case 'Down':
+                    direction = "Down";
+                    break;
+                case 'Left':
+                    direction = "Left";
+                    break;
+            }
+            break;
+        case "Right":
+            switch (input) {
+                case 'Up':
+                    direction = "Up";
+                    break;
+                case 'Down':
+                    direction = "Down";
+                    break;
+                case 'Left':
+                    direction = "Left";
+                    break;
+            }
+            break;
+        case "Down":
+            switch (input) {
+                case 'Up':
+                    direction = "Up";
+                    break;
+                case 'Right':
+                    direction = "Right";
+                    break;
+                case 'Left':
+                    direction = "Left";
+                    break;
+            }
+            break;
+        case "Left":
+            switch (input) {
+                case 'Up':
+                    direction = "Up";
+                    break;
+                case 'Right':
+                    direction = "Right";
+                    break;
+                case 'Down':
+                    direction = "Down";
+                    break;
+            }
+            break;
+    }
+}
 
 
 function game() {
